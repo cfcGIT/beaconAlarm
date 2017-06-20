@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/media/security.ico">
+
+    <title>Inicio de sesi&oacute;n</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap/docs/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap/docs/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <script src="/bootstrap/docs/assets/js/vendor/jquery.min.js"></script>
+    <script src="/bootstrap/docs/dist/js/bootstrap.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="/media/signin.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="header clearfix">
+        <h3 class="text-muted">Beacon alarm</h3>
+      </div>
+
+      <form method="POST" class="form-signin" action="/signin">
+        <h2 class="form-signin-heading">Inicio de sesi&oacute;n</h2>
+        <label for="inputUser" class="sr-only">Usuario</label>
+        <input id="inputUser" class="form-control" placeholder="Usuario" name="username" maxlength="15" required autofocus>
+        <label for="inputPassword" class="sr-only">Contrase&ntilde;a</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="password" maxlength="15" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesi&oacute;n</button>
+      </form>
+    </div> <!-- /container -->
+  </body>
+</html>

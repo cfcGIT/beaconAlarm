@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/media/security.ico">
+
+    <title>correcto</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap/docs/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/bootstrap/docs/assets/js/vendor/jquery.min.js"></script>
+    <script src="/bootstrap/docs/dist/js/bootstrap.min.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        $('#myModal').modal();
+      });
+    </script>
+
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content panel-success">
+            <div class="modal-header panel-heading">
+              <button type="button" class="close" data-dismiss="modal" onclick="window.location.href='%s'">&times;</button>
+              <h4 class="modal-title">%s</h4>
+            </div>
+            <div class="modal-body">
+              <p>%s</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" onclick="window.location.href='%s'">OK</button>
+            </div>
+          </div>
+        </div>
+      </div><!-- /modal -->
+    </div>
+  </body>
+</html>

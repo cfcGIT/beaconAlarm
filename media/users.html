@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/media/security.ico">
+  
+    <title>Lista de vecinos</title>
+  
+    <!-- Bootstrap core CSS -->
+    <link href="/bootstrap/docs/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/bootstrap/docs/assets/js/vendor/jquery.min.js"></script>
+    <script src="/bootstrap/docs/dist/js/bootstrap.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="/media/navbar.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container">
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="/index">Registro de actividad</a></li>
+              <li class="active"><a href="/users">Lista de vecinos</a></li>
+              <li><a href="/register">Dar de alta a vecino</a></li>
+              <li><a href="/notifications">Notificaciones</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a data-toggle="modal" href="#modalChangePsw">Cambiar contrase&ntilde;a</a></li>
+                  <li><a href="/signout">Cerrar sesi&oacute;n</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container">
+      <h2>Lista de vecinos</h2>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Nombre de usuario</th>
+              <th>Correo</th>
+              <th>Tel&eacute;fono</th>
+              <th>Chat id</th>
+              <th>Portal</th>
+              <th>Piso</th>
+              <th>N&uacute;mero</th>
+              <th>Beacon asociado</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            %s
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Modal change beacon -->
+      <div class="modal fade" id="modalChangeBeacon" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">Cambiar beacon asociado a %s</h4>
+            </div>
+                  
+            <!-- Modal Body -->
+            <div class="modal-body"> 
+              <form role="form" action="/changeBeacon">
+                <div class="form-group">
+                  <label for="inputNewBeacon">Nuevo beacon asociado</label>
+                  <input type="hidden" name="username" value="%s">
+                  <input type="text" class="form-control" id="inputNewBeacon" name="beacon" placeholder="Beacon" maxlength="40" required>
+                </div>
+                <button type="submit" class="btn btn-default">Cambiar</button>
+              </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div> <!-- /modal -->
+
+      <!-- Modal change password -->
+      <div class="modal fade" id="modalChangePsw" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel2">Cambiar contrase&ntilde;a</h4>
+            </div>
+                  
+            <!-- Modal Body -->
+            <div class="modal-body">   
+              <form role="form" action="/changePassword">
+              <div class="form-group">
+                  <label for="inputCurrentPassword">Contrase&ntilde;a actual</label>
+                  <input type="password" class="form-control" id="inputCurrentPassword" name="current" maxlength="20" required>
+                </div>
+                <div class="form-group">
+                  <label for="inputNewPassword1">Nueva contrase&ntilde;a</label>
+                  <input type="password" class="form-control" id="inputNewPassword1" name="new1" maxlength="20" required>
+                  <small id="passwordHelp" class="form-text text-muted">La contrase&ntilde;a tiene que tener m&iacute;nimo 8 caracteres</small>
+                </div>
+                <div class="form-group">
+                  <label for="inputNewPassword2">Repita nueva contrase&ntilde;a</label>
+                  <input type="password" class="form-control" id="inputNewPassword2" name="new2" maxlength="20" required>
+                </div>
+                <input type="hidden" name="loc" value="/users">
+                <button type="submit" class="btn btn-default">Cambiar</button>
+              </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div> <!-- /modal -->
+      
+    </div>
+  </body>
+</html>
