@@ -18,6 +18,16 @@
 
     <!-- Custom styles for this template -->
     <link href="/media/navbar.css" rel="stylesheet">
+
+    <script type="text/javascript">
+      $(document).on("click", "#modalBeacon", function () {
+        var username = $(this).data('id');
+        var text = "Cambiar beacon asociado a " + username;
+
+        $("#myModalLabel").text(text);
+        $("#username").val(username);
+      });
+    </script>
   </head>
 
   <body>
@@ -79,7 +89,7 @@
                 <span aria-hidden="true">&times;</span>
                 <span class="sr-only">Close</span>
               </button>
-              <h4 class="modal-title" id="myModalLabel">Cambiar beacon asociado a %s</h4>
+              <h4 class="modal-title" id="myModalLabel"></h4>
             </div>
                   
             <!-- Modal Body -->
@@ -87,7 +97,7 @@
               <form role="form" action="/changeBeacon">
                 <div class="form-group">
                   <label for="inputNewBeacon">Nuevo beacon asociado</label>
-                  <input type="hidden" name="username" value="%s">
+                  <input type="hidden" name="username" id="username">
                   <input type="text" class="form-control" id="inputNewBeacon" name="beacon" placeholder="Beacon" maxlength="40" required>
                 </div>
                 <button type="submit" class="btn btn-default">Cambiar</button>

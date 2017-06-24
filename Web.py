@@ -103,11 +103,11 @@ class Root(object):
             <td>%s</td>
             <td>%s</td>
             <td>%s</td>
-            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalChangeBeacon">Cambiar beacon asociado</button></td>
+            <td><button type="button" id="modalBeacon" class="btn btn-primary" data-id="%s" data-toggle="modal" data-target="#modalChangeBeacon">Cambiar beacon asociado</button></td>
             <td><button type="button" class="btn btn-danger" onclick="window.location.href='/deleteUser?username=%s'">Dar de baja</button></td>
-          </tr>''' %(str(row[0]), str(row[1]), str(row[2]), str(row[3]), str(row[4]), str(row[5]), str(row[6]), str(row[7]), str(row[0]))
+          </tr>''' %(str(row[0]), str(row[1]), str(row[2]), str(row[3]), str(row[4]), str(row[5]), str(row[6]), str(row[7]), str(row[0]), str(row[0]))
 
-    return open(os.path.join(MEDIA_DIR, u'users.html')).read() %(neighbors, str(row[0]), str(row[0]))
+    return open(os.path.join(MEDIA_DIR, u'users.html')).read() %(neighbors)
 
   @cherrypy.expose
   def changeBeacon(self, username, beacon):
