@@ -48,7 +48,7 @@ class Root(object):
     return open(os.path.join(MEDIA_DIR, u'activity.html')).read() %(activity_register)
 
   @cherrypy.expose
-  def signin(self, username, password):
+  def login(self, username, password):
     loc = "/index"
     title = "Error"
     with sqlite3.connect(DB_STRING) as con:
@@ -313,7 +313,7 @@ class Root(object):
     return open(os.path.join(MEDIA_DIR, u'correctMsg.html')).read() %(loc, title, body, loc)
 
   @cherrypy.expose
-  def signout(self):
+  def logout(self):
     try:
       if cherrypy.session['userLogin'] == "":
         return open(os.path.join(MEDIA_DIR, u'index.html'))
