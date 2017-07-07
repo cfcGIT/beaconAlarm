@@ -4,8 +4,8 @@
 # Este programa ejecuta la funcion principal del sistema: deteccion de intrusos y 
 #   envio de mensajes a traves de telegram
 
-import RPi.GPIO as GPIO
-import time
+import RPi.GPIO as GPIO    #Importamos la libreria GPIO
+import time                #Importamos time
 import os
 import sys
 import pygame
@@ -17,7 +17,7 @@ import sqlite3
 import blescan
 import bluetooth._bluetooth as bluez
 
-#librerias para mandar telegram
+#libreria para mandar telegram
 import telebot
 import threading
 
@@ -103,13 +103,14 @@ class Proyecto(threading.Thread):
           if flag == 1:
             break
         
-        day = format(timex, '%d/%m/%Y')
+        day = format(timex, '%Y-%m-%d')
         hour = format(timex, '%H:%M:%S')
+        date = "%s %s" %(day, hour)
 
         if (flag == 0):
           # No ha detectado ningun beacon autorizado cerca
           with sqlite3.connect(DB_STRING) as con:
-            con.execute("INSERT INTO alerts (intruder, day, hour) VALUES (?, ?, ?)", ["yes", day, hour])
+            con.execute("INSERT INTO alerts (intruder, date) VALUES (?, ?)", ["yes", date])
             con.commit()
             c = con.cursor()
             # Enviamos mensaje a los usuarios que hayamos marcado en la web
@@ -122,7 +123,7 @@ class Proyecto(threading.Thread):
                 query = "SELECT chatid FROM admin"
               elif row1[1] == "checked":
                 # Enviamos a ultimo vecino que entro en el garaje
-                query = "SELECT chatid FROM neighbors where beacon IN (SELECT q.beacon FROM (SELECT * FROM alerts ORDER BY hour DESC) q where q.intruder='no' ORDER BY q.day DESC limit 1)"
+                query = "SELECT chatid FROM neighbors where beacon IN (SELECT beacon FROM alerts where intruder='no' ORDER BY datetime(date) DESC limit 1)"
               else:
                 # Enviamos a todos
                 query = "SELECT chatid FROM admin UNION SELECT chatid FROM neighbors"
@@ -153,7 +154,7 @@ class Proyecto(threading.Thread):
           GPIO.output(BUZZER_PIN, False)
         else:
           with sqlite3.connect(DB_STRING) as con:
-            con.execute("INSERT INTO alerts VALUES (?, ?, ?, ?)", ["no", day, hour, UUIDb])
+            con.execute("INSERT INTO alerts VALUES (?, ?, ?)", ["no", date, UUIDb])
             con.commit()
 
           for i in range(15):

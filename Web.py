@@ -26,24 +26,24 @@ class Root(object):
     activity_register = ""
     with sqlite3.connect(DB_STRING) as con:
       c = con.cursor()
-      r = c.execute("SELECT q.* FROM (SELECT * FROM alerts ORDER BY hour DESC) q ORDER BY q.day DESC")
+      r = c.execute("SELECT * FROM alerts ORDER BY datetime(date) DESC")
 
       for row in r:
         # Intruder
         if row[0] == "yes":
           activity_register += '''
             <tr class="danger">
-              <td>%s - %s</td>
+              <td>%s</td>
               <td>Detectado intruso dentro del garaje</td>
-            </tr>''' %(str(row[1]), str(row[2]))
+            </tr>''' %(str(row[1]))
 
         # Neighbor
         else:
           activity_register += '''
             <tr class="success">
-              <td>%s - %s</td>
+              <td>%s</td>
               <td>Detectado vecino %s dentro del garaje</td>
-            </tr>''' %(str(row[1]), str(row[2]), str(row[3]))
+            </tr>''' %(str(row[1]), str(row[2]))
 
     return open(os.path.join(MEDIA_DIR, u'activity.html')).read() %(activity_register)
 
